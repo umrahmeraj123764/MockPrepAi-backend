@@ -1,12 +1,18 @@
-export const protect = async (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json({ message: "Not authorized, no token" });
+import jwt from "jsonwebtoken";
 
+export const protect = async (req, res, next) => {
     try {
+        
+        const token = req.cookies?.token;
+
+        if (!token) {
+            return res.status(401).json({ message: "Not authorized, no token" });
+        }
+
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await User.findById(decoded._id).select("-password");
+        req.user = decoded; 
         next();
     } catch (error) {
-        res.status(401).json({ message: "Token failed" });
+        return res.status(401).json({ message: "Not authorized, token failed" });
     }
 };
