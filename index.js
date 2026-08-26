@@ -25,6 +25,13 @@ app.use(cors({
 app.use("/api/auth", authRoutes);
 app.use("/api/interview", interviewRoutes);
 
+console.log("Registered routes:");
+app._router.stack.forEach((r) => {
+    if (r.route && r.route.path) {
+        console.log(r.route.path);
+    }
+});
+
 app.get("/", (req, res) => {
     res.json({ message: "API working" });
 });
