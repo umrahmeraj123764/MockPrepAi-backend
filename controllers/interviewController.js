@@ -10,7 +10,7 @@ export const startInterview=async (req,res)=>{
     if(!role||!type) return res.status(400).json({message:"doesnt exist"})
 
         const response =await groq.chat.completions.create({
-        model:"llama-3.3-70b-versatile" ,
+            model: "llama-3.1-8b-instant" ,
         messages: [{role:"user" , content: `Generate 5 ${type} interview question for ${role}.Return only a JSON array with no extra text like:["question1", "question2","question3", "question4","question5"]`}]
 
         })
@@ -31,8 +31,8 @@ export const giveResponse=async(req,res)=>{
     const {sessionId,question,answer}=req.body
     try{
     const response=await groq.chat.completions.create({
-        model:"llama-3.3-70b-versatile",
-    messages:[{
+        model: "llama-3.1-8b-instant",
+        messages:[{
         role:"user",
         content:`question:${question}
         answer:${answer} Give a score out of 10 and a genuine feedback . return only JSON like:{"score":7,"feedback":"good but....."}`
