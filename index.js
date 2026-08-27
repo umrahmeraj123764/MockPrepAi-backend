@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 
 app.use(cors({
-    origin: 'https://mock-prep-ai-frontend.vercel.app',
+    origin: process.env.CLIENT_URL || 'https://mock-prep-ai-frontend.vercel.app',
     credentials: true,
 }));
 
