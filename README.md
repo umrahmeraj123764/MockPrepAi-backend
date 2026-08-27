@@ -1,4 +1,4 @@
-# 🎤 MockPrepAI — Backend
+#  MockPrepAI — Backend
 
 The API server for **MockPrepAI**, an AI-powered mock interview platform that generates role-specific interview questions and gives instant, scored feedback on your answers.
 
